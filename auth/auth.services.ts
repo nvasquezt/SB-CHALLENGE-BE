@@ -1,7 +1,7 @@
 import { Response, NextFunction } from 'express';
 import dotenv from 'dotenv';
 import { InfoAuthRequest } from './definitionFile';
-import { getOneUser } from '../api/users/users.service';
+import { getOneUser } from '../api/users/users.services';
 import jsonWebToken, { JwtPayload } from 'jsonwebtoken';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const compose = require('composable-middleware');
@@ -64,17 +64,15 @@ export function verifyToken(token: string) {
 }
 
 export function signToken(
-  idUser: string,
-  name: string,
-  lastName: string,
+  id: string,
+  fullName: string,
   role: string
 ) {
   if (process?.env?.JWT_SECRET) {
     return jsonWebToken.sign(
       {
-        idUser,
-        name,
-        lastName,
+        id,
+        fullName,
         role,
       },
       process.env.JWT_SECRET,

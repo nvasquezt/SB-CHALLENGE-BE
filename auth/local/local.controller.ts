@@ -1,12 +1,12 @@
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
-import { getOneUser } from '../../api/users/users.service';
-import { signToken } from '../auth.service';
+import { getUserByEmail } from '../../api/users/users.services';
+import { signToken } from '../auth.services';
 
 export const handlerLoginUser = async (req: Request, res: Response) => {
-  const { userId, password } = req.body;
+  const { email, password } = req.body;
   try {
-    const user = await getOneUser(userId);
+    const user = await getUserByEmail(email);
     if (!user) {
       return res.status(401).json({ message: 'User not found' });
     }
@@ -15,7 +15,7 @@ export const handlerLoginUser = async (req: Request, res: Response) => {
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid user or password' });
     } else {
-      const token = signToken(user.idUser, user.name, user.lastName, user.role);
+      const token = signToken(user.id, user.fullName, user.role);
       return res.status(200).json({ token });
     }
   } catch (err) {
