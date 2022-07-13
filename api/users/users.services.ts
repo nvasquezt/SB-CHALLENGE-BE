@@ -12,7 +12,7 @@ export const getOneUser = async (id: string) => {
 };
 
 export const getUserByEmail = async (email: string) => {
-  const user = await prisma.user.findFirst({ where: { email } });
+  const user = await prisma.user.findUnique({ where: { email } });
   if (user) {
     return user;
   } else {

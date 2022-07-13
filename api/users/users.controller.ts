@@ -29,12 +29,12 @@ export async function handlerRegisterUser(req: Request, res: Response) {
   try {
     const addUser = await addNewUser(dataUser);
     if (!addUser) {
-      res.status(404).json({ message: 'User was not added' });
+      throw new Error('User not added');
     } else {
       res.status(200).json(addUser);
     }
   } catch (error) {
-    res.status(500).json({ message: 'Error while adding user', error });
+    res.status(500).json({ message: 'Error Register User', error });
   }
 }
 

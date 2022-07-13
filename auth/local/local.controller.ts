@@ -5,6 +5,8 @@ import { signToken } from '../auth.services';
 
 export const handlerLoginUser = async (req: Request, res: Response) => {
   const { email, password } = req.body;
+  console.log(email, password);
+  
   try {
     const user = await getUserByEmail(email);
     if (!user) {
