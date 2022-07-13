@@ -10,7 +10,7 @@ import {
 const router = Router();
 
 router.get('/:id', isAuth(), hasRole(['admin', 'user']), handlerOneUser);
-router.post('/', isAuth(), hasRole(['admin', 'user']), handlerRegisterUser);
+router.post('/', handlerRegisterUser);
 router.patch('/:id', isAuth(), hasRole(['admin', 'user']), handlerUpdateUser);
 router.delete('/:id', isAuth(), hasRole(['admin']), handlerDeleteUser);
 

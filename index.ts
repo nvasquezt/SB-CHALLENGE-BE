@@ -12,7 +12,7 @@ routes(app);
 
 const port = process.env.PORT;
 app.get('/', (req: Request, res: Response) => {
-  res.send('Healthy Check Ambulances System');
+  res.send('Health Check system location for Spy Bee Challenge');
 });
 
 app.listen(port, () => {
