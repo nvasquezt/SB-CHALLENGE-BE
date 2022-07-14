@@ -19,7 +19,7 @@ export function isAuth() {
         const token = authHeader.split(' ')[1];
         const payload = (await verifyToken(token)) as JwtPayload;
         if (payload) {
-          const user = await getOneUser(payload.idUser);
+          const user = await getOneUser(payload.id);
           if (user) {
             req.user = {
               role: user.role,

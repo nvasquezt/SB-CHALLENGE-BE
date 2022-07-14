@@ -10,7 +10,7 @@ import {
 
 const router = Router();
 
-router.get('/:id', isAuth(), hasRole(['admin', 'user']), handlerAllLocations);
+router.get('/', isAuth(), hasRole(['admin', 'user']), handlerAllLocations);
 router.get('/:id', isAuth(), hasRole(['admin', 'user']), handlerOneLocation);
 router.post('/', isAuth(), hasRole(['admin', 'user']), handlerAddLocation);
 router.patch('/:id', isAuth(), hasRole(['admin', 'user']), handlerUpdateLocation);

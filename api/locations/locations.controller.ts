@@ -44,6 +44,9 @@ export async function handlerOneLocation (req: Request, res: Response) {
 export async function handlerAddLocation (req: Request, res: Response) {
     try{
         const payload = req.body;
+        payload.lat = parseFloat(payload.lat);
+        payload.lng = parseFloat(payload.lng);
+        
         const location = await addLocation(payload);
         if(!location) {
             return res.status(404).json({
